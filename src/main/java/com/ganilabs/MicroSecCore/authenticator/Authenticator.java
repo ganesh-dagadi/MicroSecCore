@@ -12,5 +12,6 @@ import java.io.IOException;
 public class Authenticator {
     public static void handleRegister(HttpServletRequest request) throws InvalidContentTypeException {
         AbstractParsedRequest parsedRequest= ParsingChooser.chooseParser(request).parseRequest(request);
+
     }
 }

@@ -1,21 +1,19 @@
 package com.ganilabs.MicroSecCore.api.authenticationHandler;
 
-import com.ganilabs.MicroSecCore.authStrategies.AbstractAuthStrategy;
+import com.ganilabs.MicroSecCore.api.AuthenticationStrategyChain;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class AuthenticationHandler {
-    private final List<AuthenticationStrategyChain> authHandlers = new ArrayList<>();
+    private final List<AuthenticationStrategyChain> authStrategies = new ArrayList<>();
     public void addAuthStrategyChain(AuthenticationStrategyChain chain){
-        this.authHandlers.add(chain);
+        this.authStrategies.add(chain);
     }
+    public List<AuthenticationStrategyChain> getAuthStrategies(){
+        return this.authStrategies;
+    };
 
-    public void registerUser(){
-        for(AuthenticationStrategyChain chain : authHandlers){
-            for(AbstractAuthStrategy authStrategy : chain.getChain()){
-                if(authStrategy.registerUser()) return;
-            }
-        }
-    }
 }

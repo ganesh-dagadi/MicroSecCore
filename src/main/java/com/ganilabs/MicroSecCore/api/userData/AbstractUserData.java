@@ -1,5 +1,6 @@
 package com.ganilabs.MicroSecCore.api.userData;
 
+import java.util.List;
 import java.util.UUID;
 
 public abstract class AbstractUserData {
@@ -19,5 +20,7 @@ public abstract class AbstractUserData {
 
     public abstract Boolean getVerified();
     public abstract void setVerified(Boolean isEnabled);
+    public abstract List<String> getRoles();
+    public abstract void setRoles(List<String> roles);
 
 }

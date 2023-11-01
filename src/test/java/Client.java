@@ -1,5 +1,6 @@
 import com.ganilabs.MicroSecCore.MFA.MultiFactorSupport;
 import com.ganilabs.MicroSecCore.annotations.EnableMicroSec;
+import com.ganilabs.MicroSecCore.api.AuthenticationChainBuilder;
 import com.ganilabs.MicroSecCore.api.authenticationHandler.AuthenticationHandler;
 import com.ganilabs.MicroSecCore.api.authenticationHandler.AuthenticationHandlerBuilder;
 import com.ganilabs.MicroSecCore.api.userData.UserDetailsService;
@@ -8,14 +9,12 @@ import com.ganilabs.MicroSecCore.api.userData.AbstractUserData;
 import com.ganilabs.MicroSecCore.api.userData.EmailUserDataService;
 import com.ganilabs.MicroSecCore.api.userData.PasswordUserDataService;
 import com.ganilabs.MicroSecCore.api.userData.PhoneNumberUserDataService;
-import com.ganilabs.MicroSecCore.authenticator.parser.JSONParser;
-import com.ganilabs.MicroSecCore.authenticator.parser.ParsingChooser;
-import jakarta.servlet.http.HttpServletRequest;
-import org.junit.Assert.*;
-import org.junit.Test;
-import org.mockito.Mockito;
+
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.Assert.*;
@@ -27,8 +26,9 @@ import static org.mockito.Mockito.when;
 class UserIdentifierConfig implements UserIdentificationService {
     @Override
     public AuthenticationHandler getAuthenticationStrategy(){
-        return AuthenticationHandlerBuilder.getBuilder().initBuilder().withEmail().withPassword()
-                .or().withPhone().withOTP().or().none()
+        return AuthenticationHandlerBuilder.getBuilder().initBuilder()
+                .insertChain(AuthenticationChainBuilder.getBuilder().initBuilder().withEmail().withPassword().build())
+                .insertChain(AuthenticationChainBuilder.getBuilder().initBuilder().withPhone().withOTP().build())
                 .build();
     }
 }
@@ -56,6 +56,8 @@ class MockUser {
     public static Boolean isEnabled = true;
     public static Boolean isVerified = false;
     public static Boolean isMFA = true;
+    public static List<String> roles = List.of("User");
+
 }
 @Component
 class UserData extends AbstractUserData implements EmailUserDataService, PhoneNumberUserDataService, PasswordUserDataService, MultiFactorSupport {
@@ -122,6 +124,16 @@ class UserData extends AbstractUserData implements EmailUserDataService, PhoneNu
     }
 
     @Override
+    public List<String> getRoles() {
+        return MockUser.roles;
+    }
+
+    @Override
+    public void setRoles(List<String> roles){
+        MockUser.roles = roles;
+    }
+
+    @Override
     public Boolean isMFAEnabled() {
         return MockUser.isMFA;
     }
@@ -131,9 +143,4 @@ class UserData extends AbstractUserData implements EmailUserDataService, PhoneNu
 //Request and response configuration
 public class Client {
 
-  //  @Test
-//    private void testJSONParsingOfBody(){
-//        HttpServletRequest  mockedRequest = Mockito.mock(HttpServletRequest.class);
-//        when(mockedRequest.)
-//    }
 }

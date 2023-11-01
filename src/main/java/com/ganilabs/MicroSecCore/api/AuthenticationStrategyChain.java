@@ -1,4 +1,4 @@
-package com.ganilabs.MicroSecCore.api.authenticationHandler;
+package com.ganilabs.MicroSecCore.api;
 import com.ganilabs.MicroSecCore.authStrategies.AbstractAuthStrategy;
 
 import java.util.ArrayList;
