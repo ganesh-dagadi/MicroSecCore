@@ -11,6 +11,6 @@ public class PasswordHelperStrategy extends AbstractHelperStrategy {
 
     @Override
     public Boolean isStrategyApplicableForRequest(AbstractParsedRequest request) {
-        return request.getBody().containsKey(RequestConstants.PASSWORD.toString());
+        return request.getBody().containsKey(RequestConstants.PASSWORD.value);
     }
 }

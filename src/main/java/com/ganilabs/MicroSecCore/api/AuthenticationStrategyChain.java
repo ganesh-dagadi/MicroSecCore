@@ -16,4 +16,12 @@ public class AuthenticationStrategyChain {
     public List<AbstractAuthStrategy> getChain(){
         return chain;
     }
+    public Boolean equals(AuthenticationStrategyChain chain2){
+        List<AbstractAuthStrategy> thisChain = this.chain;
+        List<AbstractAuthStrategy> otherChain = chain2.getChain();
+        for(int i = 0 ; i < thisChain.size() ; i++){
+            if(thisChain.get(i).getClass() != otherChain.get(i).getClass()) return false;
+        }
+        return true;
+    }
 }

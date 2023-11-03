@@ -11,6 +11,6 @@ public class OTPHelperStrategy extends AbstractHelperStrategy{
 
     @Override
     public Boolean isStrategyApplicableForRequest(AbstractParsedRequest request) {
-        return request.getBody().containsKey(RequestConstants.OTP.toString());
+        return request.getBody().containsKey(RequestConstants.OTP.value);
     }
 }

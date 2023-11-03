@@ -1,5 +1,7 @@
 package com.ganilabs.MicroSecCore.annotations;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +13,5 @@ import java.lang.annotation.Retention;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @EnableAspectJAutoProxy
-@Component
 public @interface EnableMicroSec {
 }

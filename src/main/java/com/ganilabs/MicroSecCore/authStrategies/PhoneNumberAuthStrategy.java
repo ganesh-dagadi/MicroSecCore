@@ -37,7 +37,7 @@ public class PhoneNumberAuthStrategy extends AbstractAuthStrategy{
     @Override
     public Boolean isStrategyApplicableForRequest(AbstractParsedRequest request) {
         Map<String, Object> body = request.getBody();
-        return body.containsKey(RequestConstants.PHONENUMBER.toString()) && this.helperStrategy.isStrategyApplicableForRequest(request);
+        return body.containsKey(RequestConstants.PHONENUMBER.value) && this.helperStrategy.isStrategyApplicableForRequest(request);
     }
 
     @Override

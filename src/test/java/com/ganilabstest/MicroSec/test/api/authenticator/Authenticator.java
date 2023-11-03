@@ -1,4 +1,4 @@
-package authenticator;
+package com.ganilabstest.MicroSec.test.api.authenticator;
 
 import com.ganilabs.MicroSecCore.authenticator.parser.JSONParser;
 import com.ganilabs.MicroSecCore.authenticator.parser.ParsingChooser;

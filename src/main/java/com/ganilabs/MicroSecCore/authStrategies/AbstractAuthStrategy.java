@@ -9,7 +9,7 @@ import com.ganilabs.MicroSecCore.authenticator.parser.AbstractParsedRequest;
 public abstract class AbstractAuthStrategy {
     protected AuthenticationChainBuilder builder;
 
-    protected AbstractAuthStrategy(AuthenticationChainBuilder builder){
+    protected AbstractAuthStrategy(AuthenticationChainBuilder builder) {
         this.builder = builder;
 
     }
@@ -23,4 +23,9 @@ public abstract class AbstractAuthStrategy {
     public abstract Boolean isStrategyApplicableForRequest(AbstractParsedRequest request);
 
     public abstract Boolean registerUser();
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.getClass().toString().equals(obj.getClass().toString());
+    }
 }

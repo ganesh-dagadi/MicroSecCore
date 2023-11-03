@@ -15,7 +15,7 @@ public class EmailAuthStrategy extends AbstractAuthStrategy {
 
     @Override
     public Boolean isStrategyApplicableForRequest(AbstractParsedRequest request) {
-        return request.getBody().containsKey(RequestConstants.EMAIL.toString()) && helperStrategy.isStrategyApplicableForRequest(request);
+        return request.getBody().containsKey(RequestConstants.EMAIL.value) && helperStrategy.isStrategyApplicableForRequest(request);
     }
 
     public AbstractHelperStrategy helperStrategy;

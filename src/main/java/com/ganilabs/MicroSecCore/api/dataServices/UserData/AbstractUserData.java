@@ -1,4 +1,4 @@
-package com.ganilabs.MicroSecCore.api.userData;
+package com.ganilabs.MicroSecCore.api.dataServices.UserData;
 
 import java.util.List;
 import java.util.UUID;
